@@ -2,6 +2,7 @@
 
 **Audience:** Claude Code. Build this repo from this document.
 **Owner:** single user (the owner). **Spec date:** 2026-10-04.
+**Revision 5 (2026-10-04, build):** owner chose **D2b** (plain Anthropic SDK tool loop) over the Agent SDK; skills live in `skills/*/SKILL.md` and load into the system prompt; Backend B (MCP) deferred. Owner is the **coach**, uses a **personal Gmail** account, model stays `claude-sonnet-5-5`. Roster matcher fixed for multi-word names; date shorthand ("tmrw", "sat") added. Spike results and all deviations: `docs/spikes.md`.
 **Revision 4 (2026-10-04):** schema made lenient: only **date, time and location** are required (enforced in code, not in the JSON schema); names, title, duration are optional; unknown names no longer block a booking.
 **Revision 3 (2026-10-04):** group bookings (one event, several names), the phrase "this coming <weekday>", reference `date_candidates` code (§7.3), evals E22–E23; owner confirmed student names may go to the Anthropic API.
 **Revision 2 (2026-10-04):** added Pydantic action schemas (§5.6), roster matching (§5.7), edit/delete resolution (§5.8), new evals E13–E21 and spike S6. Reference code in §5.6/§5.7 was executed and tested; its behavior with the live API is still [UNVERIFIED] (S6).
