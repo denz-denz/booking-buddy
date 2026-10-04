@@ -198,3 +198,19 @@ def test_skills_in_system_prompt(settings):
     prompt = build_system_prompt(settings)
     assert '<skill name="demo">' in prompt and "Body here" in prompt and "when testing" in prompt
 
+
+async def test_bad_request_resets_session(settings, store, backend, proposals):
+    import httpx2
+    s = store.load_session(OWNER, 1800)
+    s.messages = [{"role": "user", "content": "old"}]
+    store.save_session(s)
+
+    class Rejects:
+        async def create(self, **kw):
+            req = httpx2.Request("POST", "https://api.anthropic.com/v1/messages")
+            raise anthropic.BadRequestError("bad", response=httpx2.Response(400, request=req), body=None)
+
+    agent, client = make_agent(settings, store, backend, proposals, [])
+    client.beta.messages = Rejects()
+    r = await agent.handle(store.load_session(OWNER, 1800), "hi", FakeUI())
+    assert r.error == "bad_request" and store.load_session(OWNER, 1800).messages == []

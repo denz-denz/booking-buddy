@@ -174,6 +174,14 @@ class Agent:
                 messages.append({"role": "user", "content": results})
             else:
                 out.replies.append("I couldn't finish that in one go. Could you rephrase or split it up?")
+        except anthropic.BadRequestError as e:
+            # A 400 on a stored conversation would repeat on every message; start over instead.
+            log.error("Anthropic rejected the request (%s); resetting session %s", e, session.chat_id)
+            self.store.reset_session(session.chat_id)
+            out.error = "bad_request"
+            out.replies = ["Something went wrong with this conversation, so I've reset it. "
+                           "Please send your request again."]
+            return out
         except anthropic.APIError as e:
             log.error("Anthropic API error: %s", e)
             out.error = "api"
