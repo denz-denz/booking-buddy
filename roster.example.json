@@ -1,0 +1,6 @@
+[
+  {"name": "Wei Ling Tan", "aliases": ["WL"], "default_location": "Clearwater Condo", "default_duration_min": 60},
+  {"name": "Ahmad Rahman", "aliases": [], "default_location": "Kallang Court 3", "default_duration_min": 90},
+  {"name": "Adam Lee"},
+  {"name": "Eve Goh"}
+]
