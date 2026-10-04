@@ -1,6 +1,6 @@
-# calbot: a Telegram calendar assistant that asks before it writes
+# Booking Buddy: a Telegram calendar assistant that asks before it writes
 
-Text your calendar the way you'd text a person. calbot is a private Telegram bot that turns messages like
+Text your calendar the way you'd text a person. Booking Buddy is a private Telegram bot that turns messages like
 *"tennis lesson next saturday 10am at clearwater condo"* into Google Calendar events. It uses Claude to
 understand what you mean, asks when something is genuinely unclear, and **never touches your calendar until
 you tap ✅**.
@@ -52,8 +52,8 @@ Bot:  ✏️ Change event
 - **Plain-language booking.** No commands to learn. Typos and shorthand such as "tmrw 6pm" or "coming sat"
   are fine.
 - **Asks when a date is really ambiguous.** "Next Saturday" said on a Sunday could mean either of two days,
-  so calbot asks instead of guessing. Unambiguous phrases like "this coming Saturday" go straight through.
-- **Asks for what's missing, once.** A booking needs a date, a time and a place. If any are missing, calbot
+  so Booking Buddy asks instead of guessing. Unambiguous phrases like "this coming Saturday" go straight through.
+- **Asks for what's missing, once.** A booking needs a date, a time and a place. If any are missing, Booking Buddy
   asks one question covering all of them.
 - **Knows your students.** An optional roster maps "wei ling", "WL" or the typo "Priyaa" to the right
   person. It asks if a name matches two students. Names that aren't on the roster still work and are flagged
@@ -71,7 +71,7 @@ Bot:  ✏️ Change event
 
 ## Safety by design
 
-calbot can read and edit your calendar, so it is deliberately restricted:
+Booking Buddy can read and edit your calendar, so it is deliberately restricted:
 
 | Guarantee | How |
 |---|---|
@@ -199,8 +199,8 @@ Message your bot `/start`. Run exactly one instance per bot token.
 #### With Docker
 
 ```bash
-docker build -t calbot .
-docker run -d --name calbot --restart always --env-file .env -v "$PWD/data:/app/data" calbot
+docker build -t booking-buddy .
+docker run -d --name booking-buddy --restart always --env-file .env -v "$PWD/data:/app/data" booking-buddy
 ```
 
 The bot uses long polling, so it needs only outbound internet access: no public URL, domain or TLS
