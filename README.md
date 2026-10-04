@@ -208,7 +208,17 @@ Message your bot `/start`. Run exactly one instance per bot token.
 
 ```bash
 docker build -t booking-buddy .
-docker run -d --name booking-buddy --restart always --env-file .env -v "$PWD/data:/app/data" booking-buddy
+docker run -d --name booking-buddy --restart always \
+  -v "$PWD/.env:/app/.env:ro" -v "$PWD/data:/app/data" booking-buddy
+```
+
+`.env` is mounted rather than passed with `--env-file`, because Docker would keep the inline `# comments`
+as part of the values. On Linux, make `data/` writable by the container's user: `sudo chown -R 1000:1000 data`.
+
+Booking Buddy runs this way on a free-tier Google Cloud `e2-micro` VM. To update it after pushing changes:
+
+```bash
+git pull && sudo docker build -t booking-buddy . && sudo docker rm -f booking-buddy && <the docker run command above>
 ```
 
 The bot uses long polling, so it needs only outbound internet access: no public URL, domain or TLS
