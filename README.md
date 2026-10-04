@@ -7,9 +7,17 @@ you tap ✅**.
 
 It was built for a tennis coach juggling lessons with students, but works for any appointments.
 
+<p align="center">
+  <img src="docs/images/demo.gif" alt="A plain-text booking in Telegram becomes a Google Calendar event after tapping Create" width="820">
+</p>
+
 ---
 
 ## What it looks like
+
+![Type a booking in plain English, tap Create, and the event appears in Google Calendar](docs/images/how-it-works.png)
+
+The same flow as text, including a follow-up edit:
 
 ```
 You:  I have an upcoming tennis lesson next saturday 10am at clearwater condo
